@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fa" dir="rtl">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+        {% include 'include/header.html' %}
+
+        {% block extra_header %}{% endblock %}
+    </head>
+    <body>
+        <!-- preloader -->
+        <div id="preloader">
+            <div class="book">
+                <div class="inner">
+                    <div class="left"></div>
+                    <div class="middle"></div>
+                    <div class="right"></div>
+                </div>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <!-- site wrapper -->
+        <div class="site-wrapper">
+            <div class="main-overlay"></div>
+
+            <!-- header -->
+            {% block content %}{% endblock %}
+
+            <!-- instagram feed -->
+            {% include 'include/instagram_feed.html' %}
+
+            <!-- footer -->
+            {% include 'include/footer.html' %}
+
+        </div>
+        <!-- end site wrapper -->
+
+        <!-- search popup area -->
+        {% include 'include/search.html' %}
+
+        <!-- canvas menu -->
+        {% include 'include/canvas_menu.html' %}
+
+        <!-- JAVA SCRIPTS -->
+        {% include 'include/js.html' %}
+
+        {% extra_js %}{% endblock %}
+    </body>
+</html>
