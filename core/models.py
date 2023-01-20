@@ -24,6 +24,7 @@ class AboutMe(models.Model):
     facebook = models.CharField(max_length=120, verbose_name=_('facebook'), default='#')
     twitter = models.CharField(max_length=120, verbose_name=_('twitter'), default='#')
     instagram = models.CharField(max_length=120, verbose_name=_('instagram'), default='#')
+    instagram_id = models.CharField(max_length=64, null=True, blank=True, verbose_name=_('instagram id'))
     pinterest = models.CharField(max_length=120, verbose_name=_('pinterest'), default='#')
     youtube = models.CharField(max_length=120, verbose_name=_('youtube'), default='#')
 
