@@ -6,10 +6,20 @@
         <title>{% block title %}{% endblock %}</title>
         <meta name="description" content="{% block meta_description %}{% endblock %}">
         {% include 'include/header.html' %}
-
+        <script src="{% static 'js/sweetalert2.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/sweetalert2.min.css' %}">
         {% block extra_header %}{% endblock %}
     </head>
     <body>
+        {% for message in messages %}
+        <script>
+        Swal.fire({
+          title: '{{ message }}',
+          icon: '{{ message.tags }}',
+          confirmButtonText: 'باشه'
+        })
+        </script>
+        {% endfor %}
         <!-- preloader -->
         <div id="preloader">
             <div class="book">

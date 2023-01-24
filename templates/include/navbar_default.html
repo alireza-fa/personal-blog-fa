@@ -18,8 +18,8 @@
 
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">تماس با ما</a>
+                <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'core:contact' %}">تماس با ما</a>
                 </li>
                 <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'core:about' %}">درباره ما</a>
