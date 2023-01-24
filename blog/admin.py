@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from blog.models import Post, Category, PostCategory, PostTag, Newsletter
+from blog.models import Post, Category, PostCategory, PostTag, Newsletter, PostComment
 
 
 @admin.register(Category)
@@ -36,3 +36,23 @@ class PostAdmin(admin.ModelAdmin):
 class NewsletterAdmin(admin.ModelAdmin):
     list_display = ('email', 'is_active')
     list_filter = ('is_active',)
+
+
+class PostCommentParentInline(admin.StackedInline):
+    model = PostComment
+    extra = 1
+
+    def get_fields(self, request, obj=None):
+        return super().get_fields(request, obj)
+
+
+@admin.register(PostComment)
+class PostCommentAdmin(admin.ModelAdmin):
+    list_display = ('fullname', 'parent', 'is_active', 'is_read', 'is_child')
+    list_filter = ('is_active', 'is_read', 'is_child')
+    list_editable = ('is_active', 'is_read')
+    search_fields = ('fullname', 'post__title', 'post__body', 'website', 'body', 'parent__fullname', 'parent__body')
+    inlines = (PostCommentParentInline,)
+
+
+

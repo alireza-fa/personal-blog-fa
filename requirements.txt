@@ -6,6 +6,7 @@ django-ckeditor==6.5.1
 django-js-asset==2.0.0
 django-storages==1.13.2
 jmespath==1.0.1
+Khayyam==3.0.17
 Pillow==9.4.0
 python-dateutil==2.8.2
 s3transfer==0.6.0

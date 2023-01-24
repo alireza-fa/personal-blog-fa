@@ -7,6 +7,7 @@ from A.local_settings import URL_ROOT
 from ckeditor.fields import RichTextField
 
 from blog.managers import IsActiveManager
+from core.models import AboutMe
 
 
 class Category(models.Model):
@@ -21,6 +22,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('blog:post-category', args=(self.slug,))
 
 
 class Post(models.Model):
@@ -51,7 +56,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('blog:post_detail', args=(self.slug,))
+        return reverse('blog:post-detail', args=(self.slug,))
 
     @staticmethod
     def get_url_root():
@@ -114,7 +119,7 @@ class PostCategory(models.Model):
 
 
 class PostTag(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='posts', verbose_name=_('post'))
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='tags', verbose_name=_('post'))
     name = models.CharField(max_length=34, verbose_name=_('name'))
 
     class Meta:
@@ -126,13 +131,14 @@ class PostTag(models.Model):
 
 
 class PostComment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', verbose_name=_('post'))
-    fullname = models.CharField(max_length=34, verbose_name=_('fullname'))
-    email = models.EmailField(max_length=120, verbose_name=_('email'))
-    website = models.CharField(max_length=120, verbose_name=_('website'))
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', verbose_name=_('post'), blank=True)
+    fullname = models.CharField(max_length=34, verbose_name=_('fullname'), blank=True)
+    email = models.EmailField(max_length=120, verbose_name=_('email'), blank=True)
+    website = models.CharField(max_length=120, verbose_name=_('website'), null=True, blank=True)
     body = models.CharField(max_length=120, verbose_name=_('body'))
     image = models.ImageField(default='comment_avatar.png', verbose_name=_('image'))
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', verbose_name=_('parent'))
+    parent = models.ForeignKey(
+        'self', on_delete=models.CASCADE, related_name='children', verbose_name=_('parent'), null=True, blank=True)
     is_child = models.BooleanField(default=False, verbose_name=_('is child'))
     is_active = models.BooleanField(default=False, verbose_name=_('is active'))
     is_read = models.BooleanField(default=False, verbose_name=_('is read'))
@@ -148,6 +154,21 @@ class PostComment(models.Model):
 
     def __str__(self):
         return self.fullname
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if self.parent:
+            me = AboutMe.objects.first()
+            self.post = self.parent.post
+            self.is_child = True
+            self.fullname = me.get_fullname()
+            self.image = me.image_avatar2
+        return super().save()
+
+    def get_parent_comment(self):
+        return PostComment.objects.filter(is_child=False)
+
+    def get_children(self):
+        return self.children.filter(is_active=True)
 
 
 class Newsletter(models.Model):
