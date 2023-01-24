@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from blog.models import Post, Category, PostCategory, PostTag
+from blog.models import Post, Category, PostCategory, PostTag, Newsletter
 
 
 @admin.register(Category)
@@ -30,3 +30,9 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('author', 'title', 'title_en', 'body')
     prepopulated_fields = {"slug": ('title_en',)}
     inlines = (PostCategoryInline, PostTagInline)
+
+
+@admin.register(Newsletter)
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('email', 'is_active')
+    list_filter = ('is_active',)

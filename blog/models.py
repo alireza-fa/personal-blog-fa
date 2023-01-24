@@ -6,6 +6,8 @@ from A.local_settings import URL_ROOT
 
 from ckeditor.fields import RichTextField
 
+from blog.managers import IsActiveManager
+
 
 class Category(models.Model):
     name = models.CharField(max_length=34, verbose_name=_('name'))
@@ -35,6 +37,9 @@ class Post(models.Model):
     is_active = models.BooleanField(default=True, verbose_name=_('is active'))
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    default_manager = models.Manager()
+    objects = IsActiveManager()
 
     class Meta:
         ordering = ('-created',)
@@ -118,3 +123,40 @@ class PostTag(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.post}'
+
+
+class PostComment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', verbose_name=_('post'))
+    fullname = models.CharField(max_length=34, verbose_name=_('fullname'))
+    email = models.EmailField(max_length=120, verbose_name=_('email'))
+    website = models.CharField(max_length=120, verbose_name=_('website'))
+    body = models.CharField(max_length=120, verbose_name=_('body'))
+    image = models.ImageField(default='comment_avatar.png', verbose_name=_('image'))
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', verbose_name=_('parent'))
+    is_child = models.BooleanField(default=False, verbose_name=_('is child'))
+    is_active = models.BooleanField(default=False, verbose_name=_('is active'))
+    is_read = models.BooleanField(default=False, verbose_name=_('is read'))
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    default_manager = models.Manager()
+    objects = IsActiveManager()
+
+    class Meta:
+        verbose_name = _('Post Comment')
+        verbose_name_plural = _('Post Comments')
+
+    def __str__(self):
+        return self.fullname
+
+
+class Newsletter(models.Model):
+    email = models.EmailField(max_length=120, verbose_name=_('email'))
+    is_active = models.BooleanField(default=False, verbose_name=_('is active'))
+
+    class Meta:
+        verbose_name = _('Newsletter')
+        verbose_name_plural = _('Newsletters')
+
+    def __str__(self):
+        return self.email

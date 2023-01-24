@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from core.models import AboutMe, Contact, Advertisement, InstagramPost, Tag
+from core.models import AboutMe, Contact, Advertisement, InstagramPost
 
 
 @admin.register(AboutMe)
@@ -25,10 +25,4 @@ class AdvertisementAdmin(admin.ModelAdmin):
 @admin.register(InstagramPost)
 class InstagramPostAdmin(admin.ModelAdmin):
     list_display = ('name', 'created', 'image')
-    search_fields = ('name',)
-
-
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created')
     search_fields = ('name',)
