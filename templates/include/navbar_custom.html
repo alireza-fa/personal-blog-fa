@@ -6,32 +6,27 @@
             <!-- social icons -->
             <ul class="social-icons list-unstyled list-inline mb-0">
                 <li class="list-inline-item">
-                    <a href="#">
+                    <a href="{{ me.facebook }}">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="#">
+                    <a href="{{ me.twitter }}">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="#">
+                    <a href="{{ me.instagram }}">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="#">
+                    <a href="{{ me.pinterest }}">
                         <i class="fab fa-pinterest"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="#">
-                        <i class="fab fa-medium"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="#">
+                    <a href="{{ me.youtube }}">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </li>
@@ -39,14 +34,14 @@
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 text-center">
             <!-- site logo -->
-            <a class="navbar-brand" href="index-3.html">
-                <img src="{% static 'images/other/avatar-lg.png' %}" alt="logo"/>
+            <a class="navbar-brand" href="{% url 'core:about' %}">
+                <img src="{{ me.image_avatar2.url }}" alt="image-avatar"/>
             </a>
-            <a href="index-3.html" class="d-block text-logo">
+            <a href="{% url 'core:about' %}" class="d-block text-logo">
                 <span class="dot">.</span>
                 Tina
             </a>
-            <span class="slogan d-block">نویسنده حرفه ای و وبلاگ نویس شخصی</span>
+            <span class="slogan d-block">{{ me.position }}</span>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12">
             <!-- header buttons -->
@@ -66,25 +61,8 @@
         <div class="collapse navbar-collapse justify-content-center centered-nav">
             <!-- menus -->
             <ul class="navbar-nav">
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#">صفحه اصلی</a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="index.html">صفحه اصلی 1</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="index-2.html">صفحه اصلی 2</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="index-3.html">صفحه اصلی 3</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="index-4.html">صفحه اصلی 4</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="index-5.html">صفحه اصلی 5</a>
-                        </li>
-                    </ul>
+                <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'core:home' %}">صفحه اصلی</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#">صفحات</a>
@@ -103,8 +81,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">تماس با ما</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">درباره ما</a>
+                <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'core:about' %}">درباره ما</a>
                 </li>
             </ul>
         </div>
