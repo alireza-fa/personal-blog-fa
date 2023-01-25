@@ -1,0 +1,41 @@
+<form method="post" novalidate action="" id="comment-form">{% csrf_token %}
+
+    <div class="messages">با تشکر. نظر شما با موفقیت ثبت شد.</div>
+
+    <div class="row">
+
+        <div class="column col-md-12">
+            <!-- Comment textarea -->
+            <div class="form-group">
+                {{ form.body }}
+                <div class="help-block with-errors">{{ form.body.errors }}</div>
+            </div>
+        </div>
+
+        <div class="column col-md-6">
+            <!-- Email input -->
+            <div class="form-group">
+                {{ form.email }}
+                <div class="help-block with-errors">{{ form.email.errors }}</div>
+            </div>
+        </div>
+
+        <div class="column col-md-6">
+            <!-- Website input -->
+            <div class="form-group">
+                {{ form.website }}
+                <div class="help-block with-errors">{{ form.website.errors }}</div>
+            </div>
+        </div>
+
+        <div class="column col-md-12">
+            <!-- Fullname input -->
+            <div class="form-group">
+                {{ form.fullname }}
+                <div class="help-block with-errors">{{ form.fullname.errors }}</div>
+            </div>
+        </div>
+
+    </div>
+
+</form>

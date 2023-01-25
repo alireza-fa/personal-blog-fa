@@ -8,6 +8,10 @@
 
 {% load datefilter %}
 
+{% block extra_js %}
+<script src="{% static 'blog/comment_blog.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 
 <!-- header -->
@@ -148,7 +152,7 @@
                 <!-- comment form -->
                 <div class="comment-form rounded bordered padding-30">
 
-                    <form method="post" novalidate action="">{% csrf_token %}
+                    <form method="dialog" novalidate action="" id="comment-form">{% csrf_token %}
 
                         <div class="messages"></div>
 
@@ -188,11 +192,11 @@
 
                         </div>
 
-                        <button type="submit" name="submit" id="submit" value="submit" class="btn btn-default">
-                            ارسال پیام
-                        </button><!-- Submit Button -->
 
                     </form>
+                    <button type="button" name="submit" id="comment-button" value="submit" class="btn btn-default" data-url="{{ object.get_absolute_url }}">
+                        ارسال پیام
+                    </button><!-- Submit Button -->
                 </div>
             </div>
 

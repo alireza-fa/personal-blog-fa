@@ -4,15 +4,24 @@ from blog.models import PostComment, Newsletter
 
 
 class PostCommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PostCommentForm, self).__init__(*args, **kwargs)
+        self.fields['email'].required = True
+        self.fields['fullname'].required = True
+
     class Meta:
         model = PostComment
         fields = ('fullname', 'email', 'website', 'body')
 
         widgets = {
-            "body": forms.Textarea(attrs={"class": 'form-control', "placeholder": 'متن نظر خود را بنویسید ...'}),
-            "email": forms.EmailInput(attrs={"class": 'form-control', "placeholder": 'ایمیل خود را بنویسید'}),
-            "website": forms.TextInput(attrs={"class": 'form-control', "placeholder": 'وبسایت خود را وارد کنید(اختیاری)'}),
-            "fullname": forms.TextInput(attrs={"class": 'form-control', "placeholder": 'نام خود را بنویسید'}),
+            "body": forms.Textarea(
+                attrs={"class": 'form-control', "placeholder": 'متن نظر خود را بنویسید ...', "id": 'body'}),
+            "email": forms.EmailInput(
+                attrs={"class": 'form-control', "placeholder": 'ایمیل خود را بنویسید', "id": 'email'}),
+            "website": forms.TextInput(
+                attrs={"class": 'form-control', "placeholder": 'وبسایت خود را وارد کنید(اختیاری)', "id": 'website'}),
+            "fullname": forms.TextInput(
+                attrs={"class": 'form-control', "placeholder": 'نام خود را بنویسید', "id": 'fullname'}),
         }
 
     def save(self, post, commit=True):
@@ -26,12 +35,15 @@ class PostCommentForm(forms.ModelForm):
         return post_comment
 
 
-class NewsletterForm(forms.ModelForm):
-    class Meta:
-        model = Newsletter
-        fields = ('email',)
+class NewsletterForm(forms.Form):
+    news_email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={"class": 'form-control w-100 text-center', "placeholder": 'ایمیل خود را بنویسید ...', "id": 'news_email'}),
+        max_length=120,
+    )
 
-        widgets = {
-            "email": forms.EmailInput(
-                attrs={"class": 'form-control w-100 text-center', "placeholder": 'ایمیل خود را بنویسید ...', "id": 'email'})
-        }
+    def save(self, commit=True):
+        newsletter = Newsletter(email=self.cleaned_data['news_email'])
+        if commit:
+            newsletter.save()
+        return newsletter

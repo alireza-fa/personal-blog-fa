@@ -1,7 +1,7 @@
 <form action="{% url 'core:newsletter-create' %}" method="post" id="newsletter-form" novalidate>
     {% csrf_token %}
     <div class="mb-2">
-        {{ form.email }}
-        <div class="help-block with-errors">{{ form.email.errors }}</div>
+        {{ news_form.news_email }}
+        <div class="help-block with-errors">{{ news_form.news_email.errors }}</div>
     </div>
 </form>

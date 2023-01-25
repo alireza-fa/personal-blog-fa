@@ -1,4 +1,4 @@
-$('#newsletter-button').click(function(){
+$('#comment-button').click(function(){
 
 function getCookie(name) {
     var cookieValue = null;
@@ -29,17 +29,20 @@ $.ajaxSetup({
 });
 
     $.ajax({
-        url: '/newsletter/create/',
+        url: $('#comment-button').data('data-url'),
         method: 'POST',
         data: {
-            'news_email': $('#news_email').val()
+            'email': $('#email').val(),
+            'body': $('#body').val(),
+            'fullname': $('#fullname').val(),
+            'website': $('#website').val()
         },
         success: function(data){
             if(data.status == 'ok'){
-                $('#newsletter-form').html(data.data);
+                $('#comment-form').html(data.data);
             }
             else{
-            $('#newsletter-form').html(data.data);
+            $('#comment-form').html(data.data);
             };
         }
     });

@@ -7,13 +7,13 @@
     </div>
     <div class="widget-content">
         <span class="newsletter-headline text-center mb-3">به ما بپیوندید!</span>
-        <form action="{% url 'core:newsletter-create' %}" method="post" id="newsletter-form" novalidate>
+        <form action="{% url 'core:newsletter-create' %}" method="dialog" id="newsletter-form" novalidate>
             {% csrf_token %}
             <div class="mb-2">
-                {{ form.email }}
+                {{ news_form.news_email }}
             </div>
         </form>
-        <button class="btn btn-default btn-full" type="submit" id="newsletter-button">ثبت نام</button>
+        <button class="btn btn-default btn-full" id="newsletter-button">ثبت نام</button>
         <span class="newsletter-privacy text-center mt-3">
                                             با ثبت نام، با <a href="#">سیاست حفظ حریم خصوصی ما</a>
                                             موافقت می کنید

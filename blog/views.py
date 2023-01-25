@@ -1,4 +1,6 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic import FormView
@@ -21,13 +23,13 @@ class PostDetailView(DetailView, FormView):
         return reverse_lazy('blog:post-detail', args=(self.kwargs.get('slug')))
 
     def form_invalid(self, form):
-        messages.error(self.request, _('Please filled form with correct information'))
-        return render(self.request, self.template_name, {"object": self.get_object(), "form": form})
+        string = render_to_string('blog/ajax/comment_form.html', {"form": form})
+        return JsonResponse(data={"data": string})
 
     def form_valid(self, form):
         form.save(post=self.get_object())
-        messages.success(self.request, _('Your comment Sent successfully'))
-        return render(self.request, self.template_name, {"object": self.get_object(), "form": self.form_class()})
+        string = render_to_string('blog/ajax/comment_success_form.html', {"form": self.form_class()})
+        return JsonResponse(data={"data": string})
 
 
 class PostCategoryView(ListView):

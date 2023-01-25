@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
@@ -39,11 +40,14 @@ class NewsletterPartialView(FormView):
     template_name = 'include/newsletter.html'
     form_class = NewsletterForm
 
+    def get_context_data(self, **kwargs):
+        return {"news_form": self.get_form()}
+
     def form_valid(self, form):
         form.save()
-        string = render_to_string('core/ajax/newsletter_success.html', {"form": self.form_class()})
+        string = render_to_string('core/ajax/newsletter_success.html', {"news_form": self.form_class()})
         return JsonResponse(data={"data": string, "status": 'ok'})
 
     def form_invalid(self, form):
-        string = render_to_string('core/ajax/newsletter.html', {"form": form})
+        string = render_to_string('core/ajax/newsletter.html', {"news_form": form})
         return JsonResponse(data={"data": string, "status": 'bad'})
