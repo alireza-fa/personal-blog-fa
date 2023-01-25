@@ -11,6 +11,7 @@ from blog.models import Post
 
 class HomeView(ListView):
     template_name = 'core/home.html'
+    paginate_by = 10
 
     def get_queryset(self):
         return Post.objects.all()
