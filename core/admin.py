@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from core.models import AboutMe, Contact, Advertisement, InstagramPost
+from core.models import AboutMe, Contact, InstagramPost
 
 
 @admin.register(AboutMe)
@@ -14,12 +14,6 @@ class ContactAdmin(admin.ModelAdmin):
     list_filter = ('is_active', 'is_read')
     list_editable = ('is_active', 'is_read')
     search_fields = ('fullname', 'email', 'subject', 'message')
-
-
-@admin.register(Advertisement)
-class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('name', 'expired_at', 'image')
-    search_fields = ('name',)
 
 
 @admin.register(InstagramPost)

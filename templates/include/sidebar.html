@@ -1,5 +1,9 @@
 {% load static %}
 
+{% load sidebar_filter %}
+
+{% load datefilter %}
+
 <div class="sidebar">
     <!-- widget about -->
     <div class="widget rounded">
@@ -36,73 +40,34 @@
             </ul>
         </div>
     </div>
-    <!-- widget مطالب محبوب -->
+    <!-- widget مطالب جدید -->
     <div class="widget rounded">
         <div class="widget-header text-center">
-            <h3 class="widget-title">مطالب محبوب</h3>
+            <h3 class="widget-title">مطالب جدید</h3>
             <img src="{% static 'images/wave.svg' %}" class="wave" alt="wave"/>
         </div>
         <div class="widget-content">
+            {% for post in 'new_posts'|sidebar %}
             <!-- post -->
             <div class="post post-list-sm circle">
                 <div class="thumb circle">
-                    <span class="number">1</span>
-                    <a href="blog-single.html">
+                    <span class="number">{{ forloop.counter }}</span>
+                    <a href="{{ post.get_absolute_url }}">
                         <div class="inner">
-                            <img src="{% static 'images/posts/tabs-1.jpg' %}" alt="post-title"/>
+                            <img src="{{ post.image_avatar.url }}" alt="{{ post.title_en }}"/>
                         </div>
                     </a>
                 </div>
                 <div class="details clearfix">
                     <h6 class="post-title my-0">
-                        <a href="blog-single.html">3 راه آسان برای سریعتر
-                            کردن آیفون</a>
+                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                     </h6>
                     <ul class="meta list-inline mt-1 mb-0">
-                        <li class="list-inline-item">30 اردیبهشت 1401</li>
+                        <li class="list-inline-item">{{ post.published_at|khayyam }}</li>
                     </ul>
                 </div>
             </div>
-            <!-- post -->
-            <div class="post post-list-sm circle">
-                <div class="thumb circle">
-                    <span class="number">2</span>
-                    <a href="blog-single.html">
-                        <div class="inner">
-                            <img src="{% static 'images/posts/tabs-2.jpg' %}" alt="post-title"/>
-                        </div>
-                    </a>
-                </div>
-                <div class="details clearfix">
-                    <h6 class="post-title my-0">
-                        <a href="blog-single.html">یک روش فوق العاده آسان که
-                            برای همه کار می کند</a>
-                    </h6>
-                    <ul class="meta list-inline mt-1 mb-0">
-                        <li class="list-inline-item">30 اردیبهشت 1401</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- post -->
-            <div class="post post-list-sm circle">
-                <div class="thumb circle">
-                    <span class="number">3</span>
-                    <a href="blog-single.html">
-                        <div class="inner">
-                            <img src="{% static 'images/posts/tabs-3.jpg' %}" alt="post-title"/>
-                        </div>
-                    </a>
-                </div>
-                <div class="details clearfix">
-                    <h6 class="post-title my-0">
-                        <a href="blog-single.html">10 راه برای شروع فوری
-                            فروش مبلمان</a>
-                    </h6>
-                    <ul class="meta list-inline mt-1 mb-0">
-                        <li class="list-inline-item">30 اردیبهشت 1401</li>
-                    </ul>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <!-- widget categories -->
@@ -113,161 +78,15 @@
         </div>
         <div class="widget-content">
             <ul class="list">
+                {% for category in 'categories'|sidebar %}
                 <li>
-                    <a href="#">سبک زندگی</a>
-                    <span>(5)</span>
+                    <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                    <span>({{ category.posts.count }})</span>
                 </li>
-                <li>
-                    <a href="#">الهام بخش</a>
-                    <span>(2)</span>
-                </li>
-                <li>
-                    <a href="#">مد روز</a>
-                    <span>(4)</span>
-                </li>
-                <li>
-                    <a href="#">سیاست</a>
-                    <span>(1)</span>
-                </li>
-                <li>
-                    <a href="#">پرطرفدار</a>
-                    <span>(7)</span>
-                </li>
-                <li>
-                    <a href="#">فرهنگ</a>
-                    <span>(3)</span>
-                </li>
+                {% endfor %}
             </ul>
         </div>
     </div>
     <!-- widget newsletter -->
-    <div class="widget rounded">
-        <div class="widget-header text-center">
-            <h3 class="widget-title">خبرنامه</h3>
-            <img src="{% static 'images/wave.svg' %}" class="wave" alt="wave"/>
-        </div>
-        <div class="widget-content">
-            <span class="newsletter-headline text-center mb-3">به 70,000 مشترک ما بپیوندید!</span>
-            <form>
-                <div class="mb-2">
-                    <input class="form-control w-100 text-center" placeholder="ایمیل خود را بنویسید ..."
-                           type="email">
-                </div>
-                <button class="btn btn-default btn-full" type="submit">ثبت نام</button>
-            </form>
-            <span class="newsletter-privacy text-center mt-3">
-                                            با ثبت نام، با <a href="#">سیاست حفظ حریم خصوصی ما</a>
-                                            موافقت می کنید
-                                        </span>
-        </div>
-    </div>
-    <!-- widget post carousel -->
-    <div class="widget rounded">
-        <div class="widget-header text-center">
-            <h3 class="widget-title">جشن</h3>
-            <img src="{% static 'images/wave.svg' %}" class="wave" alt="wave"/>
-        </div>
-        <div class="widget-content">
-            <div class="post-carousel-widget">
-                <!-- post -->
-                <div class="post post-carousel">
-                    <div class="thumb rounded">
-                        <a href="category.html" class="category-badge position-absolute">چگونه</a>
-                        <a href="blog-single.html">
-                            <div class="inner">
-                                <img src="{% static 'images/widgets/widget-carousel-1.jpg' %}"
-                                     alt="post-title"/>
-                            </div>
-                        </a>
-                    </div>
-                    <h5 class="post-title mb-0 mt-4">
-                        <a href="blog-single.html">5 راه آسان که می
-                            توانید آینده را به موفقیت تبدیل کنید</a>
-                    </h5>
-                    <ul class="meta list-inline mt-2 mb-0">
-                        <li class="list-inline-item">
-                            <a href="#">کاتن</a>
-                        </li>
-                        <li class="list-inline-item">30 اردیبهشت 1401</li>
-                    </ul>
-                </div>
-                <!-- post -->
-                <div class="post post-carousel">
-                    <div class="thumb rounded">
-                        <a href="category.html" class="category-badge position-absolute">پرطرفدار</a>
-                        <a href="blog-single.html">
-                            <div class="inner">
-                                <img src="{% static 'images/widgets/widget-carousel-2.jpg' %}"
-                                     alt="post-title"/>
-                            </div>
-                        </a>
-                    </div>
-                    <h5 class="post-title mb-0 mt-4">
-                        <a href="blog-single.html">با این 7 نکته بر هنر
-                            طبیعت مسلط شوید</a>
-                    </h5>
-                    <ul class="meta list-inline mt-2 mb-0">
-                        <li class="list-inline-item">
-                            <a href="#">کاتن</a>
-                        </li>
-                        <li class="list-inline-item">30 اردیبهشت 1401</li>
-                    </ul>
-                </div>
-                <!-- post -->
-                <div class="post post-carousel">
-                    <div class="thumb rounded">
-                        <a href="category.html" class="category-badge position-absolute">چگونه</a>
-                        <a href="blog-single.html">
-                            <div class="inner">
-                                <img src="{% static 'images/widgets/widget-carousel-1.jpg' %}"
-                                     alt="post-title"/>
-                            </div>
-                        </a>
-                    </div>
-                    <h5 class="post-title mb-0 mt-4">
-                        <a href="blog-single.html">5 راه آسان که می
-                            توانید آینده را به موفقیت تبدیل کنید</a>
-                    </h5>
-                    <ul class="meta list-inline mt-2 mb-0">
-                        <li class="list-inline-item">
-                            <a href="#">کاتن</a>
-                        </li>
-                        <li class="list-inline-item">30 اردیبهشت 1401</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- carousel arrows -->
-            <div class="slick-arrows-bot">
-                <button type="button" data-role="none" class="carousel-botNav-prev slick-custom-buttons"
-                        aria-label="بعدی">
-                    <i class="icon-arrow-right"></i>
-                </button>
-                <button type="button" data-role="none" class="carousel-botNav-next slick-custom-buttons"
-                        aria-label="قبلی">
-                    <i class="icon-arrow-left"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- widget advertisement -->
-    <div class="widget no-container rounded text-md-center">
-        <span class="ads-title">- تبلیغات -</span>
-        <a href="#" class="widget-ads">
-            <img src="{% static 'images/ads/ad-360.png' %}" alt="Advertisement"/>
-        </a>
-    </div>
-    <!-- widget tags -->
-    <div class="widget rounded">
-        <div class="widget-header text-center">
-            <h3 class="widget-title">برچسب ها</h3>
-            <img src="{% static 'images/wave.svg' %}" class="wave" alt="wave"/>
-        </div>
-        <div class="widget-content">
-            <a href="#" class="tag">#پرطرفدار</a>
-            <a href="#" class="tag">#فیلم</a>
-            <a href="#" class="tag">#ویژه</a>
-            <a href="#" class="tag">#گالری</a>
-            <a href="#" class="tag">#سلبریتی</a>
-        </div>
-    </div>
+    {% include 'include/newsletter.html' %}
 </div>

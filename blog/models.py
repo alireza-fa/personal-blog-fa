@@ -16,6 +16,9 @@ class Category(models.Model):
     slug = models.SlugField(max_length=50, verbose_name=_('slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('is active'))
 
+    default_manager = models.Manager()
+    objects = IsActiveManager()
+
     class Meta:
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')

@@ -60,7 +60,7 @@
                                                  alt="{{ me.last_name_en }}"/>{{ me.get_fullname }}
                                         </a>
                                     </li>
-                                    <li class="list-inline-item">{{ post.created|khayyam }}</li>
+                                    <li class="list-inline-item">{{ post.published_at|khayyam }}</li>
                                 </ul>
                                 <h5 class="post-title mb-3 mt-3">
                                     <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>

@@ -55,6 +55,7 @@
                                         <li class="list-inline-item"><a href="{% url 'core:about' %}"><img src="{{ me.image_avatar3.url }}"
                                                                                       class="author" alt="{{ me.get_fullname }}"/>{{ me.get_fullname }}</a>
                                         </li>
+                                        <li class="list-inline-item">{{ post.published_at|khayyam }}</li>
                                     </ul>
                                     <h5 class="post-title mb-3 mt-3"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
                                     <p class="excerpt mb-0">{{ post.introduction }}</p>
