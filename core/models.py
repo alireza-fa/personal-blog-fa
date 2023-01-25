@@ -15,6 +15,7 @@ class AboutMe(models.Model):
     email = models.EmailField(max_length=120, verbose_name=_('email'))
     address = models.CharField(max_length=250, verbose_name=_('address'))
     describe = RichTextField(verbose_name=_('describe'))
+    image_background = models.ImageField(verbose_name=_('image background'), default='medical_wall.jpg')
     image_logo = models.FileField(verbose_name=_('image logo'), help_text=_('recommended: Image(format is .svg)'))
     image_about = models.ImageField(
         verbose_name=_('Image for about page'), help_text=_('recommended: Image(1680X1120)'))
