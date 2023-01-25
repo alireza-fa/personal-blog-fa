@@ -1,6 +1,6 @@
 from django import forms
 
-from blog.models import PostComment
+from blog.models import PostComment, Newsletter
 
 
 class PostCommentForm(forms.ModelForm):
@@ -25,3 +25,13 @@ class PostCommentForm(forms.ModelForm):
             post_comment.save()
         return post_comment
 
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = Newsletter
+        fields = ('email',)
+
+        widgets = {
+            "email": forms.EmailInput(
+                attrs={"class": 'form-control w-100 text-center', "placeholder": 'ایمیل خود را بنویسید ...', "id": 'email'})
+        }

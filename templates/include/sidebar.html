@@ -4,6 +4,8 @@
 
 {% load datefilter %}
 
+{% load render_partial %}
+
 <div class="sidebar">
     <!-- widget about -->
     <div class="widget rounded">
@@ -88,5 +90,5 @@
         </div>
     </div>
     <!-- widget newsletter -->
-    {% include 'include/newsletter.html' %}
+    {% render_partial 'core.views.NewsletterPartialView' %}
 </div>

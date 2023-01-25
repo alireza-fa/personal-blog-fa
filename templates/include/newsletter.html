@@ -6,14 +6,14 @@
         <img src="{% static 'images/wave.svg' %}" class="wave" alt="wave"/>
     </div>
     <div class="widget-content">
-        <span class="newsletter-headline text-center mb-3">به 70,000 مشترک ما بپیوندید!</span>
-        <form>
+        <span class="newsletter-headline text-center mb-3">به ما بپیوندید!</span>
+        <form action="{% url 'core:newsletter-create' %}" method="post" id="newsletter-form" novalidate>
+            {% csrf_token %}
             <div class="mb-2">
-                <input class="form-control w-100 text-center" placeholder="ایمیل خود را بنویسید ..."
-                       type="email">
+                {{ form.email }}
             </div>
-            <button class="btn btn-default btn-full" type="submit">ثبت نام</button>
         </form>
+        <button class="btn btn-default btn-full" type="submit" id="newsletter-button">ثبت نام</button>
         <span class="newsletter-privacy text-center mt-3">
                                             با ثبت نام، با <a href="#">سیاست حفظ حریم خصوصی ما</a>
                                             موافقت می کنید

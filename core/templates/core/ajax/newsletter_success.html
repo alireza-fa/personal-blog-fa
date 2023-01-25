@@ -1,0 +1,7 @@
+<form action="{% url 'core:newsletter-create' %}" method="post" id="newsletter-form" novalidate>
+    <div class="help-block with-errors">با تشکر. ایمیل شما ثبت شد</div>
+    {% csrf_token %}
+    <div class="mb-2">
+        {{ form.email }}
+    </div>
+</form>

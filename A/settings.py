@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     # Third-party apps
     'ckeditor',
     'storages',
+    'django_render_partial',
 ]
 
 MIDDLEWARE = [
