@@ -43,7 +43,7 @@
                             <!-- post -->
                             <div class="post post-grid rounded bordered">
                                 <div class="thumb top-rounded">
-                                    <a class="category-badge position-absolute">{{ category.name }}</a>
+                                    <a href="{{ post.categories.first.category.get_absolute_url }}" class="category-badge position-absolute">{{ post.categories.first.category.name }}</a>
                                     <a href="{{ post.get_absolute_url }}">
                                         <div class="inner">
                                             <img src="{{ post.image_cover.url }}" alt="{{ post.title }}"/>
