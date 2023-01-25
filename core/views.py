@@ -1,12 +1,9 @@
-from django.contrib import messages
 from django.http import JsonResponse
-from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic import FormView
-from django.utils.translation import gettext_lazy as _
 
 from core.forms import ContactForm
 from blog.models import Post

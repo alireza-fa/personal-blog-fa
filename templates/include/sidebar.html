@@ -11,7 +11,7 @@
     <div class="widget rounded">
         <div class="widget-about data-bg-image text-center"
              data-bg-image="{% static 'images/map-bg.png' %}">
-            <img src="{{ me.image_logo.url }}" alt="logo" class="mb-4"/>
+            <img src="{{ me.image_logo.url }}" alt="Logo {{ me.get_fullname_en }}" class="mb-4"/>
             <p class="mb-4">{{ me.describe_short }}</p>
             <ul class="social-icons list-unstyled list-inline mb-0">
                 <li class="list-inline-item">

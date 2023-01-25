@@ -50,6 +50,9 @@ class AboutMe(models.Model):
     def get_fullname(self):
         return f'{self.first_name} {self.last_name}'
 
+    def get_fullname_en(self):
+        return f'{self.first_name_en} {self.last_name_en}'
+
 
 class Contact(models.Model):
     fullname = models.CharField(max_length=34, verbose_name=_('fullname'))

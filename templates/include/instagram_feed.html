@@ -1,41 +1,20 @@
 {% load static %}
 
+{% load sidebar_filter %}
+
 <div class="instagram">
     <div class="container-xl">
         <!-- button -->
-        <a href="#" class="btn btn-default btn-instagram">@Katen در اینستاگرام</a>
+        <a href="{{ me.instagram }}" class="btn btn-default btn-instagram">@{{ me.instagram_id }} در اینستاگرام</a>
         <!-- images -->
         <div class="instagram-feed d-flex flex-wrap">
+            {% for post in 'instagram_posts'|sidebar %}
             <div class="insta-item col-sm-2 col-6 col-md-2">
-                <a href="#">
-                    <img src="{% static 'images/insta/insta-1.jpg' %}" alt="insta-title"/>
+                <a>
+                    <img src="{{ post.image.url }}" alt="{{ post.name }}"/>
                 </a>
             </div>
-            <div class="insta-item col-sm-2 col-6 col-md-2">
-                <a href="#">
-                    <img src="{% static 'images/insta/insta-2.jpg' %}" alt="insta-title"/>
-                </a>
-            </div>
-            <div class="insta-item col-sm-2 col-6 col-md-2">
-                <a href="#">
-                    <img src="{% static 'images/insta/insta-3.jpg' %}" alt="insta-title"/>
-                </a>
-            </div>
-            <div class="insta-item col-sm-2 col-6 col-md-2">
-                <a href="#">
-                    <img src="{% static 'images/insta/insta-4.jpg' %}" alt="insta-title"/>
-                </a>
-            </div>
-            <div class="insta-item col-sm-2 col-6 col-md-2">
-                <a href="#">
-                    <img src="{% static 'images/insta/insta-5.jpg' %}" alt="insta-title"/>
-                </a>
-            </div>
-            <div class="insta-item col-sm-2 col-6 col-md-2">
-                <a href="#">
-                    <img src="{% static 'images/insta/insta-6.jpg' %}" alt="insta-title"/>
-                </a>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

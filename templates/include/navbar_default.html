@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container-xl">
         <!-- site logo -->
-        <a class="navbar-brand" href="{% url 'core:home' %}"><img src="{{ me.image_logo.url }}" alt="logo"/></a>
+        <a class="navbar-brand" href="{% url 'core:home' %}"><img src="{{ me.image_logo.url }}" alt="{{ me.get_fullname_en }}"/></a>
 
         <div class="collapse navbar-collapse">
             <!-- menus -->
