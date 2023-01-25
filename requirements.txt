@@ -4,6 +4,7 @@ botocore==1.29.53
 Django==4.1.5
 django-ckeditor==6.5.1
 django-js-asset==2.0.0
+django-render-partial==0.4
 django-storages==1.13.2
 jmespath==1.0.1
 Khayyam==3.0.17

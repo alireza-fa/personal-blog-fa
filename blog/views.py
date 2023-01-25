@@ -1,5 +1,6 @@
+from django.db.models import Q
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -46,4 +47,30 @@ class PostCategoryView(ListView):
     def get_context_data(self, *args, object_list=None, **kwargs):
         context = super().get_context_data(*args, object_list=object_list, **kwargs)
         context['category'] = self.get_category()
+        return context
+
+
+class PostSearchView(ListView):
+    template_name = 'blog/post_search.html'
+    paginate_by = 10
+
+    def get_search_word(self):
+        return self.request.GET.get('search')
+
+    def get_queryset(self):
+        search_word = self.get_search_word()
+        if search_word:
+            posts = Post.objects.filter(
+                Q(title__icontains=search_word) | Q(title_en__icontains=search_word) |
+                Q(introduction__icontains=search_word) | Q(body__icontains=search_word) |
+                Q(categories__category__name__icontains=search_word)
+            ).distinct()
+            return posts
+        return Post.objects.all()
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        context = super().get_context_data(*args, object_list=object_list, **kwargs)
+        search_word = self.get_search_word()
+        if search_word:
+            context['search_word'] = search_word
         return context

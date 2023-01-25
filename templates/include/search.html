@@ -7,8 +7,8 @@
             <h3 class="mb-4 mt-0">ESC را فشار دهید تا بسته شود</h3>
         </div>
         <!-- form -->
-        <form class="d-flex search-form">
-            <input class="form-control me-2" type="search" placeholder="جستجو کنید و اینتر را فشار دهید ..."
+        <form class="d-flex search-form" action="{% url 'blog:post-search' %}">
+            <input class="form-control me-2" name="search" type="search" placeholder="جستجو کنید و اینتر را فشار دهید ..."
                    aria-label="Search">
             <button class="btn btn-default btn-lg" type="submit">
                 <i class="icon-magnifier"></i>
