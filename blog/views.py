@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
-from blog.models import Post
+from blog.models import Post, Category
 from blog.forms import PostCommentForm
 
 
@@ -29,5 +30,20 @@ class PostDetailView(DetailView, FormView):
         return render(self.request, self.template_name, {"object": self.get_object(), "form": self.form_class()})
 
 
-class PostCategoryView(DetailView):
-    pass
+class PostCategoryView(ListView):
+    template_name = 'blog/category.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    paginate_by = 10
+
+    def get_category(self):
+        category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        return category
+
+    def get_queryset(self):
+        return Post.objects.filter(categories__category=self.get_category())
+
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        context = super().get_context_data(*args, object_list=object_list, **kwargs)
+        context['category'] = self.get_category()
+        return context

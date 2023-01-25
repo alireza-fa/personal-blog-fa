@@ -27,6 +27,9 @@ class Category(models.Model):
         from django.urls import reverse
         return reverse('blog:post-category', args=(self.slug,))
 
+    def get_posts(self):
+        return self.posts.filter(post__is_active=True)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=120, verbose_name=_('title'))
@@ -34,6 +37,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=150, verbose_name=_('slug'))
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
                                related_name='posts', verbose_name=_('author'))
+    introduction = models.CharField(max_length=76, verbose_name=_('introduction'))
     body = RichTextField(verbose_name=_('body'))
     published_at = models.DateTimeField(default=timezone.now(), verbose_name=_('published at'))
     image_cover = models.ImageField(verbose_name=_('image_cover'), help_text=_('recommended: Image(550X367)'))

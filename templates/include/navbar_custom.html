@@ -64,25 +64,11 @@
                 <li class="nav-item {% if request.path == '/' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'core:home' %}">صفحه اصلی</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#">صفحات</a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="category.html">دسته بندی</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="blog-single.html">جزییات وبلاگ 1</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="blog-single-2.html">جزییات وبلاگ 2</a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'core:contact' %}">تماس با ما</a>
+                    <a class="nav-link" href="{% url 'core:contact' %}">تماس با من</a>
                 </li>
                 <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'core:about' %}">درباره ما</a>
+                    <a class="nav-link" href="{% url 'core:about' %}">درباره من</a>
                 </li>
             </ul>
         </div>

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{ object. }}{% endblock %}
+
+{% block meta_description %}{% endblock %}
+
+{% load datefilter %}
+
+{% block content %}
+
+    <!-- header -->
+    <header class="header-personal">
+        {% include 'include/navbar_custom.html' %}
+    </header>
+
+    <section class="page-header">
+        <div class="container-xl">
+            <div class="text-center">
+                <h1 class="mt-0 mb-2">{{ category.name }}</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center mb-0">
+                        <li class="breadcrumb-item"><a href="{% url 'core:home' %}">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- section main content -->
+    <section class="main-content">
+        <div class="container-xl">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-8">
+
+                    <div class="row gy-4">
+                        {% for post in object_list %}
+                        <div class="col-sm-6">
+                            <!-- post -->
+                            <div class="post post-grid rounded bordered">
+                                <div class="thumb top-rounded">
+                                    <a class="category-badge position-absolute">{{ category.name }}</a>
+                                    <a href="{{ post.get_absolute_url }}">
+                                        <div class="inner">
+                                            <img src="{{ post.image_cover.url }}" alt="{{ post.title }}"/>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="details">
+                                    <ul class="meta list-inline mb-0">
+                                        <li class="list-inline-item"><a href="{% url 'core:about' %}"><img src="{{ me.image_avatar3.url }}"
+                                                                                      class="author" alt="{{ me.get_fullname }}"/>{{ me.get_fullname }}</a>
+                                        </li>
+                                    </ul>
+                                    <h5 class="post-title mb-3 mt-3"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+                                    <p class="excerpt mb-0">{{ post.introduction }}</p>
+                                </div>
+                                <div class="post-bottom clearfix d-flex align-items-center">
+                                    <div class="social-share me-auto">
+                                        <button class="toggle-button icon-share"></button>
+                                        <ul class="icons list-unstyled list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <a href="{{ post.get_facebook_share_link }}"><i class="fab fa-facebook-f"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{ post.get_twitter_share_link }}"><i class="fab fa-twitter"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{ post.get_linkedin_share_link }}"><i class="fab fa-linkedin-in"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{ post.get_pinterest_share_link }}"><i class="fab fa-pinterest"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{ post.get_telegram_share_link }}"><i class="fab fa-telegram-plane"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="more-button float-end">
+                                        <a href="{{ post.get_absolute_url }}"><span class="icon-options"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                            </li>
+                            {% endif %}
+
+                            {% for page in paginator.page_range %}
+                            {% if page == page_obj.number %}
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">{{ page }}</span>
+                            </li>
+                            {% elif page > page_obj.number|add:'2' %}
+                            {% elif page < page_obj.number|add:'-2' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+
+                </div>
+                <div class="col-lg-4">
+
+                    <!-- sidebar -->
+                    {% include 'include/sidebar.html' %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
