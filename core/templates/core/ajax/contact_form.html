@@ -1,0 +1,40 @@
+<form class="contact-form" method="post" id="contact-form" novalidate>{% csrf_token %}
+
+    <div class="messages"></div>
+
+    <div class="row">
+        <div class="column col-md-6">
+            <!-- Name input -->
+            <div class="form-group">
+                {{ form.fullname }}
+                <div class="help-block with-errors">{{ form.fullname.errors }}</div>
+            </div>
+        </div>
+
+        <div class="column col-md-6">
+            <!-- Email input -->
+            <div class="form-group">
+                {{ form.email }}
+                <div class="help-block with-errors">{{ form.email.errors }}</div>
+            </div>
+        </div>
+
+        <div class="column col-md-12">
+            <!-- Subject input -->
+            <div class="form-group">
+                {{ form.subject }}
+                <div class="help-block with-errors">{{ form.subject.errors }}</div>
+            </div>
+        </div>
+
+        <div class="column col-md-12">
+            <!-- Message textarea -->
+            <div class="form-group">
+                {{ form.message }}
+                <div class="help-block with-errors">{{ form.message.errors }}</div>
+            </div>
+        </div>
+    </div>
+
+
+</form>

@@ -32,8 +32,12 @@ class ContactView(FormView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, _('successful'))
-        return super().form_valid(form)
+        string = render_to_string('core/ajax/contact_success_form.html', {"form": form})
+        return JsonResponse(data={"data": string, "status": 'ok'})
+
+    def form_invalid(self, form):
+        string = render_to_string('core/ajax/contact_form.html', {"form": form})
+        return JsonResponse(data={"data": string, "status": 'bad'})
 
 
 class NewsletterPartialView(FormView):
