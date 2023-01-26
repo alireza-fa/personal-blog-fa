@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+from django.utils.translation import gettext_lazy as _
 
 from pathlib import Path
 
@@ -75,12 +76,23 @@ WSGI_APPLICATION = 'A.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': DB_NAME,
+            'PASSWORD': DB_PASS,
+            'HOST': DB_HOST,
+            'PORT': DB_PORT,
+        }
+    }
 
 
 # Password validation
@@ -105,7 +117,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'fa-ir'
+LANGUAGE_CODE = 'fa'
+
+LANGUAGES = (
+    ('fa', _('Persian')),
+    ('en-us', _('English')),
+)
 
 TIME_ZONE = 'Asia/Tehran'
 
@@ -114,6 +131,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = (
+    BASE_DIR / 'locale',
+)
 
 
 # Static files (CSS, JavaScript, Images)

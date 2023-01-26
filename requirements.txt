@@ -9,6 +9,7 @@ django-storages==1.13.2
 jmespath==1.0.1
 Khayyam==3.0.17
 Pillow==9.4.0
+psycopg2-binary==2.9.5
 python-dateutil==2.8.2
 s3transfer==0.6.0
 six==1.16.0
