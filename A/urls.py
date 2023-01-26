@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('core.urls')),
     path('blog/', include('blog.urls')),
     path('error404/', TemplateView.as_view(template_name='404.html')),
+    path('rosetta/', include('rosetta.urls')),
 ]

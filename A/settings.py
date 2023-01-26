@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'storages',
     'django_render_partial',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
