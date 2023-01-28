@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-26 18:39+0330\n"
-"PO-Revision-Date: 2023-01-26 18:44+0330\n"
+"PO-Revision-Date: 2023-01-26 18:57+0330\n"
 "Last-Translator:   <alirezafeyze44@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -102,216 +102,216 @@ msgstr "تصویر آواتار"
 
 #: blog/models.py:48 core/models.py:29
 msgid "recommended: Image(60X60)"
-msgstr ""
+msgstr "سایز پیشنهادی(60X60) است"
 
 #: blog/models.py:58
 msgid "Post"
-msgstr ""
+msgstr "پست"
 
 #: blog/models.py:59
 msgid "Posts"
-msgstr ""
+msgstr "پست ها"
 
 #: blog/models.py:117 blog/models.py:129 blog/models.py:141
 msgid "post"
-msgstr ""
+msgstr "پست"
 
 #: blog/models.py:118
 msgid "category"
-msgstr ""
+msgstr "دسته بندی"
 
 #: blog/models.py:121
 msgid "Post Category"
-msgstr ""
+msgstr "دسته بندی پست"
 
 #: blog/models.py:122
 msgid "Post Categories"
-msgstr ""
+msgstr "دسته بندی پست ها"
 
 #: blog/models.py:133
 msgid "Post Tag"
-msgstr ""
+msgstr "تگ پست"
 
 #: blog/models.py:134
 msgid "Post Tags"
-msgstr ""
+msgstr "تگ های پست"
 
 #: blog/models.py:142 core/models.py:58
 msgid "fullname"
-msgstr ""
+msgstr "نام کامل"
 
 #: blog/models.py:143 blog/models.py:182 core/models.py:15 core/models.py:59
 msgid "email"
-msgstr ""
+msgstr "ایمیل"
 
 #: blog/models.py:144
 msgid "website"
-msgstr ""
+msgstr "وب سایت"
 
 #: blog/models.py:148
 msgid "parent"
-msgstr ""
+msgstr "پدر"
 
 #: blog/models.py:149
 msgid "is child"
-msgstr ""
+msgstr "فرزند است"
 
 #: blog/models.py:151 core/models.py:62
 msgid "is read"
-msgstr ""
+msgstr "خوانده شده"
 
 #: blog/models.py:159
 msgid "Post Comment"
-msgstr ""
+msgstr "کامنت پست"
 
 #: blog/models.py:160
 msgid "Post Comments"
-msgstr ""
+msgstr "کامنت های پست"
 
 #: blog/models.py:186
 msgid "Newsletter"
-msgstr ""
+msgstr "خبرنامه"
 
 #: blog/models.py:187
 msgid "Newsletters"
-msgstr ""
+msgstr "خبرنامه ها"
 
 #: core/apps.py:8
 msgid "Core Config"
-msgstr ""
+msgstr "تنظیمات هسته"
 
 #: core/models.py:8
 msgid "first name"
-msgstr ""
+msgstr "نام"
 
 #: core/models.py:9
 msgid "first name english"
-msgstr ""
+msgstr "نام به انگلیسی"
 
 #: core/models.py:10
 msgid "last name"
-msgstr ""
+msgstr "نام خانوادگی "
 
 #: core/models.py:11
 msgid "last name english"
-msgstr ""
+msgstr "نام خانوادگی به انگلیسی"
 
 #: core/models.py:12
 msgid "position"
-msgstr ""
+msgstr "پوزیشن"
 
 #: core/models.py:13
 msgid "position english"
-msgstr ""
+msgstr "پوزیشن به انگلیسی"
 
 #: core/models.py:14
 msgid "phone number"
-msgstr ""
+msgstr "شماره موبایل"
 
 #: core/models.py:16
 msgid "address"
-msgstr ""
+msgstr "آدرس"
 
 #: core/models.py:17
 msgid "describe"
-msgstr ""
+msgstr "توضیح"
 
 #: core/models.py:19
 msgid "image background"
-msgstr ""
+msgstr "تصویر بک گراند"
 
 #: core/models.py:19
 msgid "recommended: Image(1920X1279)"
-msgstr ""
+msgstr "سایز پیشنهادی(1920X1279) است"
 
 #: core/models.py:20
 msgid "image logo"
-msgstr ""
+msgstr "تصویر لوگو"
 
 #: core/models.py:20
 msgid "recommended: Image(format is .svg)"
-msgstr ""
+msgstr "لوگو پیشنهادی فرمت svg دارد"
 
 #: core/models.py:22
 msgid "Image for about page"
-msgstr ""
+msgstr "تصویر برای صفحه درباره من"
 
 #: core/models.py:22
 msgid "recommended: Image(1680X1120)"
-msgstr ""
+msgstr "سایز پیشنهادی(1680X1120) است"
 
 #: core/models.py:24
 msgid "Image for big avatar"
-msgstr ""
+msgstr "تصویر آواتار(سایز بزرگ)"
 
 #: core/models.py:24
 msgid "recommended: Image(100X100)"
-msgstr ""
+msgstr "سایز پیشنهادی(100X100) است"
 
 #: core/models.py:26
 msgid "Image for medium avatar"
-msgstr ""
+msgstr "تصویر آواتار(متوسط)"
 
 #: core/models.py:26
 msgid "recommended: Image(80X80)"
-msgstr ""
+msgstr "سایز پیشنهادی(80X80) است"
 
 #: core/models.py:29
 msgid "Image for small avatar"
-msgstr ""
+msgstr "تصویر آواتار(کوچک)"
 
 #: core/models.py:31
 msgid "describe short"
-msgstr ""
+msgstr "توضیح کوتاه"
 
 #: core/models.py:33
 msgid "facebook"
-msgstr ""
+msgstr "فیسبوک"
 
 #: core/models.py:34
 msgid "twitter"
-msgstr ""
+msgstr "توییتر"
 
 #: core/models.py:35
 msgid "instagram"
-msgstr ""
+msgstr "اینستاگرام"
 
 #: core/models.py:36
 msgid "instagram id"
-msgstr ""
+msgstr "آیدی اینستاگرام"
 
 #: core/models.py:37
 msgid "pinterest"
-msgstr ""
+msgstr "پینترست"
 
 #: core/models.py:38
 msgid "youtube"
-msgstr ""
+msgstr "یوتیوب"
 
 #: core/models.py:44 core/models.py:45
 msgid "About Me"
-msgstr ""
+msgstr "درباره من"
 
 #: core/models.py:60
 msgid "subject"
-msgstr ""
+msgstr "موضوع"
 
 #: core/models.py:61
 msgid "message"
-msgstr ""
+msgstr "پیام"
 
 #: core/models.py:68
 msgid "Contact"
-msgstr ""
+msgstr "تماس"
 
 #: core/models.py:69
 msgid "Contacts"
-msgstr ""
+msgstr "تماس ها"
 
 #: core/models.py:82
 msgid "Instagram Post"
-msgstr ""
+msgstr "پست اینستاگرام"
 
 #: core/models.py:83
 msgid "Instagram Posts"
-msgstr ""
+msgstr "پست های اینستاگرام"
